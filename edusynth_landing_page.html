@@ -469,6 +469,139 @@
             line-height: 1.6;
         }
 
+        /* Category Accordion Styles */
+        .categories-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .category-block {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem 2rem;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.15);
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .category-header:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .category-header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon {
+            font-size: 1.6rem;
+        }
+
+        .category-title {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .category-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.2rem 0.65rem;
+            border-radius: 20px;
+            margin-left: 0.6rem;
+        }
+
+        .category-chevron {
+            color: white;
+            font-size: 1.1rem;
+            transition: transform 0.35s ease;
+            opacity: 0.85;
+        }
+
+        .category-block.open .category-chevron {
+            transform: rotate(180deg);
+        }
+
+        .category-tasks {
+            display: none;
+            padding: 1rem 2rem 1.5rem 2rem;
+            gap: 1rem;
+            flex-direction: column;
+        }
+
+        .category-block.open .category-tasks {
+            display: flex;
+        }
+
+        /* Task row inside a category */
+        .task-row {
+            background: white;
+            border-radius: 14px;
+            padding: 1.2rem 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .task-row:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .task-row-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .task-row-info {
+            flex: 1;
+        }
+
+        .task-row-info h4 {
+            color: #667eea;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .task-row-info p {
+            color: #666;
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .task-row-arrow {
+            color: #764ba2;
+            font-size: 1.1rem;
+            opacity: 0.6;
+            flex-shrink: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .task-row:hover .task-row-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+        }
+
         .back-btn {
             background: rgba(255, 255, 255, 0.2);
             color: white;
@@ -548,25 +681,170 @@
         <button class="back-btn" onclick="backToLanding()">← Back to Home</button>
         <div class="tasks-header">
             <h1>Available Tasks</h1>
-            <p>Choose a task to get started with content creation and review</p>
+            <p>Choose a category and select a task to get started</p>
         </div>
-        <div class="tasks-grid">
-            <div class="task-card" onclick="launchTask('classification')">
-                <div class="task-icon">📋</div>
-                <h3>Question Classification</h3>
-                <p>Automatically classify and categorize questions based on topics, difficulty levels, and learning objectives.</p>
+
+        <div class="categories-container">
+
+            <!-- ── Existing Tasks ── -->
+            <div class="category-block open" id="cat-existing">
+                <div class="category-header" onclick="toggleCategory('cat-existing')">
+                    <div class="category-header-left">
+                        <span class="category-icon">⭐</span>
+                        <span class="category-title">Core Tasks</span>
+                        <span class="category-count">3 tasks</span>
+                    </div>
+                    <span class="category-chevron">▼</span>
+                </div>
+                <div class="category-tasks">
+                    <div class="task-row" onclick="launchTask('classification')">
+                        <span class="task-row-icon">📋</span>
+                        <div class="task-row-info">
+                            <h4>Question Classification</h4>
+                            <p>Automatically classify and categorize questions based on topics, difficulty levels, and learning objectives.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                    <div class="task-row" onclick="launchTask('comparison')">
+                        <span class="task-row-icon">📚</span>
+                        <div class="task-row-info">
+                            <h4>Book Comparison</h4>
+                            <p>Compare content across multiple academic books to identify similarities, differences, and knowledge gaps.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                    <div class="task-row" onclick="launchTask('qa')">
+                        <span class="task-row-icon">💬</span>
+                        <div class="task-row-info">
+                            <h4>Q&amp;A Based on a Book</h4>
+                            <p>Generate and answer questions based on specific book content using AI-powered analysis and comprehension.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                </div>
             </div>
-            <div class="task-card" onclick="launchTask('comparison')">
-                <div class="task-icon">📚</div>
-                <h3>Book Comparison</h3>
-                <p>Compare content across multiple academic books to identify similarities, differences, and knowledge gaps.</p>
+
+            <!-- ── A: Content Creation and Enrichment ── -->
+            <div class="category-block" id="cat-content">
+                <div class="category-header" onclick="toggleCategory('cat-content')">
+                    <div class="category-header-left">
+                        <span class="category-icon">✍️</span>
+                        <span class="category-title">Content Creation &amp; Enrichment</span>
+                        <span class="category-count">3 tasks</span>
+                    </div>
+                    <span class="category-chevron">▼</span>
+                </div>
+                <div class="category-tasks">
+                    <div class="task-row" onclick="launchTask('question-generation')">
+                        <span class="task-row-icon">❓</span>
+                        <div class="task-row-info">
+                            <h4>Question Generation from Book / Topic</h4>
+                            <p>Auto-generate questions at specified difficulty levels (recall, application, analysis) and types (MCQ, short answer, case-based) from a chapter, topic, or uploaded document.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                    <div class="task-row" onclick="launchTask('distractor-generator')">
+                        <span class="task-row-icon">🎯</span>
+                        <div class="task-row-info">
+                            <h4>Distractor Generator for MCQs</h4>
+                            <p>Generate high-quality, plausible wrong options that test for common misconceptions — the hardest part of MCQ writing.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                    <div class="task-row" onclick="launchTask('answer-key')">
+                        <span class="task-row-icon">🗝️</span>
+                        <div class="task-row-info">
+                            <h4>Answer Key &amp; Marking Scheme Generator</h4>
+                            <p>Generate a structured answer key with point breakdowns and model answers for a given set of questions, ready for evaluators.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                </div>
             </div>
-            <div class="task-card" onclick="launchTask('qa')">
-                <div class="task-icon">💬</div>
-                <h3>Q&A Based on a Book</h3>
-                <p>Generate and answer questions based on specific book content using AI-powered analysis and comprehension.</p>
+
+            <!-- ── B: Analysis and Gap Detection ── -->
+            <div class="category-block" id="cat-analysis">
+                <div class="category-header" onclick="toggleCategory('cat-analysis')">
+                    <div class="category-header-left">
+                        <span class="category-icon">🔍</span>
+                        <span class="category-title">Analysis &amp; Gap Detection</span>
+                        <span class="category-count">2 tasks</span>
+                    </div>
+                    <span class="category-chevron">▼</span>
+                </div>
+                <div class="category-tasks">
+                    <div class="task-row" onclick="launchTask('duplicate-detector')">
+                        <span class="task-row-icon">🔄</span>
+                        <div class="task-row-info">
+                            <h4>Duplicate / Near-Duplicate Question Detector</h4>
+                            <p>Scan a question bank to flag semantically similar questions even when worded differently. Reduces redundancy before printing question papers.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                    <div class="task-row" onclick="launchTask('syllabus-coverage')">
+                        <span class="task-row-icon">🗺️</span>
+                        <div class="task-row-info">
+                            <h4>Syllabus Coverage Analyzer</h4>
+                            <p>Upload a question bank and a syllabus; the tool highlights over-tested, under-tested, or missing topics with a visual heatmap of coverage.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <!-- ── C: Document and Paper Workflows ── -->
+            <div class="category-block" id="cat-docs">
+                <div class="category-header" onclick="toggleCategory('cat-docs')">
+                    <div class="category-header-left">
+                        <span class="category-icon">📄</span>
+                        <span class="category-title">Document &amp; Paper Workflows</span>
+                        <span class="category-count">2 tasks</span>
+                    </div>
+                    <span class="category-chevron">▼</span>
+                </div>
+                <div class="category-tasks">
+                    <div class="task-row" onclick="launchTask('paper-generator')">
+                        <span class="task-row-icon">📝</span>
+                        <div class="task-row-info">
+                            <h4>Question Paper Generator</h4>
+                            <p>Auto-assemble a balanced question paper from the bank given constraints: total marks, time limit, topic distribution, difficulty mix, and question types.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                    <div class="task-row" onclick="launchTask('marking-scheme')">
+                        <span class="task-row-icon">✅</span>
+                        <div class="task-row-info">
+                            <h4>Answer Key &amp; Marking Scheme Generator</h4>
+                            <p>Generate a structured answer key with point breakdowns and model answers for a given set of questions, ready for evaluators.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── D: Knowledge and Concepts Tools ── -->
+            <div class="category-block" id="cat-knowledge">
+                <div class="category-header" onclick="toggleCategory('cat-knowledge')">
+                    <div class="category-header-left">
+                        <span class="category-icon">💡</span>
+                        <span class="category-title">Knowledge &amp; Concepts Tools</span>
+                        <span class="category-count">1 task</span>
+                    </div>
+                    <span class="category-chevron">▼</span>
+                </div>
+                <div class="category-tasks">
+                    <div class="task-row" onclick="launchTask('glossary-extractor')">
+                        <span class="task-row-icon">📖</span>
+                        <div class="task-row-info">
+                            <h4>Glossary / Key Terms Extractor</h4>
+                            <p>Extract domain-specific terms from a book or chapter and generate definitions in context — useful for creating study guides or lecture notes.</p>
+                        </div>
+                        <span class="task-row-arrow">›</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end categories-container -->
     </div>
 
     <!-- Footer -->
@@ -682,6 +960,11 @@
 
         function launchTask(taskType) {
             alert(`Launching ${taskType} task...\nThis would navigate to the ${taskType} interface.`);
+        }
+
+        function toggleCategory(id) {
+            const block = document.getElementById(id);
+            block.classList.toggle('open');
         }
 
         function toggleDropdown() {
