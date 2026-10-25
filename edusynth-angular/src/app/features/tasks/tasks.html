@@ -1,0 +1,49 @@
+<div class="tasks-page active">
+  <button type="button" class="back-btn" (click)="backToLanding()">← Back to Home</button>
+  <div class="tasks-header">
+    <h1>Available Tasks</h1>
+    <p>Choose a category and select a task to get started</p>
+  </div>
+
+  <div class="categories-container">
+    @for (category of categories; track category.id) {
+      <section class="category-block" [id]="category.id" [class.open]="isOpen(category.id)">
+        <button
+          type="button"
+          class="category-header"
+          [attr.aria-expanded]="isOpen(category.id)"
+          [attr.aria-controls]="category.id + '-tasks'"
+          (click)="toggleCategory(category.id)"
+        >
+          <span class="category-header-left">
+            <span class="category-icon" aria-hidden="true">{{ category.icon }}</span>
+            <span class="category-title">{{ category.title }}</span>
+            <span class="category-count">
+              {{ category.tasks.length }} {{ category.tasks.length === 1 ? 'task' : 'tasks' }}
+            </span>
+          </span>
+          <span class="category-chevron" aria-hidden="true">▼</span>
+        </button>
+        <div class="category-tasks" [id]="category.id + '-tasks'">
+          @for (task of category.tasks; track task.id) {
+            <div
+              class="task-row"
+              role="button"
+              tabindex="0"
+              (click)="launchTask(task.id)"
+              (keydown.enter)="launchTask(task.id)"
+              (keydown.space)="$event.preventDefault(); launchTask(task.id)"
+            >
+              <span class="task-row-icon" aria-hidden="true">{{ task.icon }}</span>
+              <div class="task-row-info">
+                <h4>{{ task.title }}</h4>
+                <p>{{ task.description }}</p>
+              </div>
+              <span class="task-row-arrow" aria-hidden="true">›</span>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  </div>
+</div>

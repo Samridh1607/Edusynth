@@ -1,0 +1,80 @@
+@if (consent.settingsOpen()) {
+  <div class="consent-backdrop" (click)="onBackdropClick($event)">
+    <section class="consent-panel" role="dialog" aria-modal="true" aria-labelledby="consent-title">
+      <h2 id="consent-title">Cookie settings</h2>
+      <p>
+        Choose which cookies EduSynth may use. You can change this at any time from
+        "Cookie settings" in the footer. Read our
+        <a routerLink="/cookies" (click)="consent.closeSettings()">Cookie Policy</a> for details.
+      </p>
+
+      @if (consent.privacySignal) {
+        <p class="consent-note">
+          Your browser is sending a Do Not Track or Global Privacy Control signal,
+          so analytics and preference cookies stay off.
+        </p>
+      }
+
+      <ul class="consent-options">
+        <li>
+          <label>
+            <input type="checkbox" checked disabled>
+            <span>
+              <strong>Essential</strong>
+              Keeps you signed in, protects forms, and remembers these choices. Always on.
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input
+              #analyticsBox
+              type="checkbox"
+              [checked]="analytics()"
+              [disabled]="consent.privacySignal"
+              (change)="analytics.set(analyticsBox.checked)"
+            >
+            <span>
+              <strong>Analytics</strong>
+              Anonymised usage and performance data that helps us improve EduSynth.
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input
+              #functionalBox
+              type="checkbox"
+              [checked]="functional()"
+              [disabled]="consent.privacySignal"
+              (change)="functional.set(functionalBox.checked)"
+            >
+            <span>
+              <strong>Functional</strong>
+              Remembers interface preferences such as your last-used task category.
+            </span>
+          </label>
+        </li>
+      </ul>
+
+      <div class="consent-actions">
+        <button type="button" class="consent-btn outline" (click)="saveChoices()">Save choices</button>
+        <button type="button" class="consent-btn" (click)="consent.rejectNonEssential()">Reject non-essential</button>
+        <button type="button" class="consent-btn" (click)="consent.acceptAll()">Accept all</button>
+      </div>
+    </section>
+  </div>
+} @else if (!consent.hasDecided()) {
+  <section class="consent-banner" role="region" aria-label="Cookie consent">
+    <p>
+      We use essential cookies to run EduSynth. With your permission, we would also like to use
+      analytics and preference cookies to improve the platform. See our
+      <a routerLink="/cookies">Cookie Policy</a>.
+    </p>
+    <div class="consent-actions">
+      <button type="button" class="consent-btn outline" (click)="consent.openSettings()">Customise</button>
+      <button type="button" class="consent-btn" (click)="consent.rejectNonEssential()">Reject non-essential</button>
+      <button type="button" class="consent-btn" (click)="consent.acceptAll()">Accept all</button>
+    </div>
+  </section>
+}
