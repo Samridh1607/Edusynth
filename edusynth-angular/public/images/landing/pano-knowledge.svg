@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" role="img" aria-label="A constellation of linked key concepts orbiting a glossary hub">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1033"/><stop offset="0.7" stop-color="#1c1254"/><stop offset="1" stop-color="#2a1563"/></linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5ee7ff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c3aed" stop-opacity="0.45"/><stop offset="1" stop-color="#0b1033" stop-opacity="0"/></linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#7c6cff" stop-opacity="0.5"/><stop offset="1" stop-color="#7c6cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sweep" cx="0" cy="1" r="1"><stop offset="0" stop-color="#5ee7ff" stop-opacity="0.05"/><stop offset="1" stop-color="#5ee7ff" stop-opacity="0.55"/></radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <style>
+    .twinkle { fill: #c7d2fe; animation: twinkle 3s ease-in-out infinite; }
+    .flow { stroke-dasharray: 6 8; animation: flow 1.2s linear infinite; }
+    .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-in-out infinite; }
+    .bob { animation: bob 4s ease-in-out infinite; }
+    .scan { animation: scan 3.2s ease-in-out infinite alternate; }
+    .spin { transform-origin: 1180px 270px; animation: spin 6s linear infinite; }
+    .orbit { transform-origin: 1180px 270px; animation: spin 24s linear infinite; }
+    .grow { transform-box: fill-box; transform-origin: bottom; animation: grow 2.8s ease-in-out infinite alternate; }
+    .draw { stroke-dasharray: 40; stroke-dashoffset: 40; animation: draw 3.6s ease-out infinite; }
+    .drift { animation: drift 3.6s ease-in infinite; }
+    .blink { animation: twinkle 1.4s ease-in-out infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+    @keyframes flow { to { stroke-dashoffset: -28; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+    @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    @keyframes scan { from { transform: translateY(0); } to { transform: translateY(254px); } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes grow { from { transform: scaleY(0.35); } to { transform: scaleY(1); } }
+    @keyframes draw { 0% { stroke-dashoffset: 40; } 35%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+    @keyframes drift { 0% { transform: translateX(-60px); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateX(70px); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .draw { stroke-dashoffset: 0; } }
+  </style>
+  <rect width="1600" height="600" fill="url(#bg)"/>
+  <g><circle class="twinkle" cx="60" cy="40" r="2" style="animation-delay:-0s"/><circle class="twinkle" cx="180" cy="90" r="1.4" style="animation-delay:-0.7s"/><circle class="twinkle" cx="320" cy="30" r="1.4" style="animation-delay:-1.4s"/><circle class="twinkle" cx="470" cy="70" r="2" style="animation-delay:-2.0999999999999996s"/><circle class="twinkle" cx="610" cy="25" r="1.4" style="animation-delay:-2.8s"/><circle class="twinkle" cx="760" cy="60" r="1.4" style="animation-delay:-0.5s"/><circle class="twinkle" cx="900" cy="35" r="2" style="animation-delay:-1.1999999999999993s"/><circle class="twinkle" cx="1040" cy="80" r="1.4" style="animation-delay:-1.8999999999999995s"/><circle class="twinkle" cx="1190" cy="30" r="1.4" style="animation-delay:-2.5999999999999996s"/><circle class="twinkle" cx="1330" cy="65" r="2" style="animation-delay:-0.2999999999999998s"/><circle class="twinkle" cx="1480" cy="40" r="1.4" style="animation-delay:-1s"/><circle class="twinkle" cx="1560" cy="110" r="1.4" style="animation-delay:-1.6999999999999993s"/><circle class="twinkle" cx="120" cy="180" r="2" style="animation-delay:-2.3999999999999986s"/><circle class="twinkle" cx="700" cy="150" r="1.4" style="animation-delay:-0.09999999999999964s"/><circle class="twinkle" cx="1540" cy="260" r="1.4" style="animation-delay:-0.7999999999999989s"/><circle class="twinkle" cx="40" cy="300" r="2" style="animation-delay:-1.5s"/></g>
+  <rect y="440" width="1600" height="160" fill="url(#floor)"/>
+  <g stroke="#5ee7ff" stroke-opacity="0.16" fill="none">
+    <path d="M0 482H1600 M0 498H1600 M0 520H1600 M0 550H1600 M0 590H1600"/>
+    <path d="M800 470 L-1600 600 M800 470 L-800 600 M800 470 L-300 600 M800 470 L100 600 M800 470 L450 600 M800 470 L800 600 M800 470 L1150 600 M800 470 L1500 600 M800 470 L1900 600 M800 470 L2400 600 M800 470 L3200 600"/>
+  </g>
+  <path d="M0 470H1600" stroke="#f472b6" stroke-opacity="0.5" stroke-width="2" filter="url(#glow)"/>
+  <ellipse cx="1180" cy="270" rx="420" ry="250" fill="url(#halo)"/>
+  <g>
+  <ellipse class="orbit" cx="1180" cy="270" rx="260" ry="190" fill="none" stroke="#a78bfa" stroke-opacity="0.35" stroke-width="1.5" stroke-dasharray="3 10"/>
+  <g stroke="#a78bfa" stroke-opacity="0.4" stroke-width="1.5">
+    <path d="M1020 150 L900 170 M1180 90 L1020 150 M1180 90 L1340 140 M1340 140 L1480 200 M1400 300 L1480 200 M1300 420 L1460 420 M1050 400 L1150 450 M1300 420 L1150 450 M960 280 L900 170 M960 280 L1050 400"/>
+  </g>
+  <g class="flow" stroke="url(#beam)" stroke-width="2.5" fill="none">
+    <path d="M1180 270 L1020 150 M1180 270 L1340 140 M1180 270 L1400 300 M1180 270 L1300 420 M1180 270 L1050 400 M1180 270 L960 280"/>
+  </g>
+  <g filter="url(#glow)" fill="#0b1033" stroke="#5ee7ff" stroke-width="3">
+    <circle class="pulse" cx="1020" cy="150" r="17"/><circle class="pulse" style="animation-delay:-0.4s" cx="1340" cy="140" r="17"/>
+    <circle class="pulse" style="animation-delay:-0.8s" cx="1400" cy="300" r="17"/><circle class="pulse" style="animation-delay:-1.2s" cx="1300" cy="420" r="17"/>
+    <circle class="pulse" style="animation-delay:-1.6s" cx="1050" cy="400" r="17"/><circle class="pulse" style="animation-delay:-2s" cx="960" cy="280" r="17"/>
+  </g>
+  <g fill="#a78bfa" filter="url(#glow)">
+    <circle class="twinkle" cx="900" cy="170" r="7"/><circle class="twinkle" style="animation-delay:-1s" cx="1180" cy="90" r="7"/>
+    <circle class="twinkle" style="animation-delay:-2s" cx="1480" cy="200" r="7"/><circle class="twinkle" style="animation-delay:-0.5s" cx="1460" cy="420" r="7"/>
+    <circle class="twinkle" style="animation-delay:-1.5s" cx="1150" cy="450" r="7"/>
+  </g>
+  <g class="pulse" filter="url(#glow)">
+    <circle cx="1180" cy="270" r="44" fill="#0b1033" stroke="#f472b6" stroke-width="3.5"/>
+    <text x="1180" y="282" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="32" font-weight="800" fill="#f472b6">Aa</text>
+  </g>
+  </g>
+</svg>

@@ -1,8 +1,25 @@
 <div class="main-content">
+  <div class="hero-orbs" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
   <div class="left-section">
     <div class="welcome-text">Welcome to the</div>
     <h1 class="title">FUTURE OF<br>LEARNING</h1>
-    <button type="button" class="start-button" (click)="start()">Start</button>
+    <p class="hero-subtitle">
+      AI-powered teaching tools for
+      <span class="visually-hidden">teachers, schools, universities, publishers and trainers</span>
+      <span class="rotating-word" aria-hidden="true">
+        @for (word of [heroAudiences[heroWordIndex()]]; track word) {
+          <span>{{ word }}</span>
+        }
+      </span>
+    </p>
+    <div class="hero-actions">
+      <button type="button" class="start-button" (click)="start()">Start</button>
+      <button type="button" class="learn-more-btn" (click)="scrollTo('about')">
+        Learn more <span aria-hidden="true">↓</span>
+      </button>
+    </div>
   </div>
   <div class="right-section">
     <div class="logo-circle">
@@ -12,3 +29,143 @@
     </div>
   </div>
 </div>
+
+<section class="landing-section about-section" id="about" aria-labelledby="about-heading">
+  <div class="about-text" appReveal>
+    <span class="section-eyebrow">What is EduSynth?</span>
+    <h2 id="about-heading" class="section-title">An AI workspace for teaching material</h2>
+    <p>
+      EduSynth reads the books and syllabi you already teach from and helps you create
+      knowledge from them. It writes questions, builds question papers and marking schemes,
+      compares textbooks, and shows where your assessments miss parts of the syllabus.
+    </p>
+    <p>
+      Teachers spend less time on preparation and more time teaching. Students get practice
+      material that matches what they are actually studying.
+    </p>
+  </div>
+  <div class="section-visual-wrap" appReveal style="--reveal-delay: 150ms">
+    <img
+      class="section-visual"
+      src="images/landing/about-hologram.svg"
+      alt="A glowing open book projecting a neural network hologram"
+      width="400"
+      height="260"
+    >
+  </div>
+</section>
+
+<section class="capabilities" id="capabilities" aria-labelledby="capabilities-heading">
+  <div class="landing-section">
+    <div class="section-header" appReveal>
+      <span class="section-eyebrow">Capabilities</span>
+      <h2 id="capabilities-heading" class="section-title">What you can do with EduSynth</h2>
+      <p>Nine tools in five groups, all working from the same source material.</p>
+    </div>
+  </div>
+
+  @for (capability of capabilities; track capability.title; let i = $index) {
+    <article
+      class="capability-band"
+      [class.art-left]="capability.artSide === 'left'"
+      [attr.aria-labelledby]="'capability-' + i"
+    >
+      <div class="band-media">
+        <img
+          class="band-image"
+          [src]="capability.image"
+          [alt]="capability.imageAlt"
+          width="1600"
+          height="600"
+          [attr.loading]="i === 0 ? null : 'lazy'"
+        >
+      </div>
+      <div class="band-inner">
+        <div class="band-content" appReveal>
+          <span class="band-index">
+            {{ i + 1 < 10 ? '0' : '' }}{{ i + 1 }} / {{ capabilities.length < 10 ? '0' : '' }}{{ capabilities.length }}
+            · {{ capability.category }}
+          </span>
+          <h3 [id]="'capability-' + i">{{ capability.title }}</h3>
+          <p>{{ capability.description }}</p>
+          <ul class="capability-tools" aria-label="Included tools">
+            @for (tool of capability.tools; track tool) {
+              <li>{{ tool }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </article>
+  }
+</section>
+
+<section class="landing-section" id="how-it-works" aria-labelledby="steps-heading">
+  <div class="section-header" appReveal>
+    <span class="section-eyebrow">How it works</span>
+    <h2 id="steps-heading" class="section-title">From book to assessment in three steps</h2>
+  </div>
+  <ol class="steps-list">
+    @for (step of steps; track step.title; let i = $index) {
+      <li class="step-card" appReveal [style.--reveal-delay]="i * 120 + 'ms'">
+        <span class="step-number" aria-hidden="true">{{ i + 1 }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </li>
+    }
+  </ol>
+</section>
+
+<section class="landing-section" id="organizations" aria-labelledby="org-heading">
+  <div class="about-section org-intro">
+    <div class="section-visual-wrap" appReveal>
+      <img
+        class="section-visual"
+        src="images/landing/org-network.svg"
+        alt="Schools, universities and publishers linked to a central EduSynth hub"
+        width="400"
+        height="260"
+        loading="lazy"
+      >
+    </div>
+    <div class="about-text" appReveal style="--reveal-delay: 150ms">
+      <span class="section-eyebrow">For organizations</span>
+      <h2 id="org-heading" class="section-title">One platform for your whole team</h2>
+      <p>
+        Bring every teacher, editor and trainer onto the same workspace. Everyone works from
+        the same books and syllabus, so papers stay consistent across classes and years.
+      </p>
+    </div>
+  </div>
+  <div class="audience-grid">
+    @for (audience of audiences; track audience.title; let i = $index) {
+      <div class="audience-card" appReveal [style.--reveal-delay]="i * 120 + 'ms'">
+        <span class="audience-icon" aria-hidden="true">{{ audience.icon }}</span>
+        <h3>{{ audience.title }}</h3>
+        <p>{{ audience.description }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="landing-section stats-section" id="stats" aria-labelledby="stats-heading" #statsSection>
+  <div class="section-header" appReveal>
+    <span class="section-eyebrow">Our customers</span>
+    <h2 id="stats-heading" class="section-title">Trusted by educators around the world</h2>
+  </div>
+  <dl class="stats-grid">
+    @for (stat of stats; track stat.label; let i = $index) {
+      <div class="stat-card" appReveal [style.--reveal-delay]="i * 120 + 'ms'">
+        <dt>{{ stat.label }}</dt>
+        <dd>{{ formatStat(stat) }}{{ stat.suffix }}</dd>
+      </div>
+    }
+  </dl>
+</section>
+
+<section class="landing-section cta-section" aria-labelledby="cta-heading">
+  <div appReveal>
+    <h2 id="cta-heading" class="section-title">Ready to create knowledge?</h2>
+    <p>Sign in and start your first task in under a minute.</p>
+    <button type="button" class="start-button" (click)="start()">Get started</button>
+  </div>
+</section>

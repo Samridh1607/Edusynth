@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" role="img" aria-label="Schools, universities and publishers linked to a central EduSynth hub">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1033"/><stop offset="1" stop-color="#24145a"/></linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#7c6cff" stop-opacity="0.55"/><stop offset="1" stop-color="#7c6cff" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#5ee7ff" stroke-opacity="0.08"/></pattern>
+  </defs>
+  <style>
+    .link { stroke-dasharray: 4 5; animation: link 1s linear infinite; }
+    .hub { transform-box: fill-box; transform-origin: center; animation: hub 2.4s ease-in-out infinite; }
+    @keyframes link { to { stroke-dashoffset: 18; } }
+    @keyframes hub { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+  <rect width="400" height="260" fill="url(#bg)"/>
+  <rect width="400" height="260" fill="url(#grid)"/>
+  <ellipse cx="200" cy="125" rx="160" ry="110" fill="url(#halo)"/>
+  <g class="link" stroke="#5ee7ff" stroke-opacity="0.5" stroke-width="1.5">
+    <path d="M200 120 L80 70 M200 120 L320 70 M200 120 L80 195 M200 120 L320 195"/>
+  </g>
+  <g fill="none" stroke-width="2" filter="url(#glow)">
+    <path d="M55 85 V60 L80 45 L105 60 V85 Z M70 85 V70 H90 V85" stroke="#a78bfa"/>
+    <path d="M295 85 V55 H345 V85 Z M295 55 L320 40 L345 55 M305 85 V65 M320 85 V65 M335 85 V65" stroke="#5ee7ff"/>
+    <path d="M58 210 V180 H102 V210 Z M66 180 V172 H94 V180" stroke="#5ee7ff"/>
+    <path d="M300 210 L320 178 L340 210 Z M312 210 V196 H328 V210" stroke="#a78bfa"/>
+  </g>
+  <g class="hub" filter="url(#glow)">
+    <polygon points="200,88 228,104 228,136 200,152 172,136 172,104" fill="#0b1033" stroke="#f472b6" stroke-width="2.5"/>
+    <circle cx="200" cy="120" r="9" fill="#f472b6"/>
+  </g>
+  <g fill="#5ee7ff"><circle cx="140" cy="95" r="3"/><circle cx="260" cy="95" r="3"/><circle cx="140" cy="157" r="3"/><circle cx="260" cy="157" r="3"/></g>
+</svg>
